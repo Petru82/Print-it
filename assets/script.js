@@ -19,7 +19,7 @@ const slides = [
 ];
 
 let parentElement = document.getElementById("banner");
-console.log(banner);
+console.log(parentElement);
 
 let nouvelleImage = document.createElement("img");
 nouvelleImage.appendChild();
