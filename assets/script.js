@@ -18,8 +18,15 @@ const slides = [
   },
 ];
 
-let parentElement = document.getElementById("banner");
-console.log(parentElement);
+let divArrowLeft = document.querySelector(".arrow_left");
+console.log(divArrowLeft);
 
-let nouvelleImage = document.createElement("img");
-nouvelleImage.appendChild();
+let divArrowRight = document.querySelector(".arrow_right");
+console.log(divArrowRight);
+
+let listeDots = document.querySelectorAll(".dot");
+console.log(listeDots);
+
+for (let i = 0; i < listeDots.length; i++) {
+  console.log(listeDots[i]);
+}
