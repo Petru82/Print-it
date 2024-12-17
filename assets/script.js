@@ -59,3 +59,16 @@ divArrowLeft.addEventListener("click", () => {
   bannerImmage.src = slides[currentIndex].image;
   bannerTitle.innerHTML = slides[currentIndex].tagLine;
 });
+
+listeDots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    listeDots[currentIndex].classList.remove("dot_selected");
+
+    currentIndex = index;
+
+    listeDots[currentIndex].classList.add("dot_selected");
+
+    bannerImmage.src = slides[currentIndex].image;
+    bannerTitle.innerHTML = slides[currentIndex].tagLine;
+  });
+});
