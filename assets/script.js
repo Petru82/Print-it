@@ -1,3 +1,4 @@
+//! Tableaux des slides
 const slides = [
   {
     image: "./assets/images/slideshow/slide1.jpg",
@@ -18,6 +19,7 @@ const slides = [
   },
 ];
 
+//! Variable globale
 let divArrowLeft = document.querySelector(".arrow_left");
 console.log(divArrowLeft);
 
@@ -34,41 +36,32 @@ console.log(bannerTitle, "bannerTitle");
 
 let currentIndex = 0;
 
-divArrowRight.addEventListener("click", () => {
-  listeDots[currentIndex].classList.remove("dot_selected");
-  currentIndex++;
+//! Parcourir chaque dot
+listeDots.forEach((dot, index) => {
+  dot.addEventListener("click", () => {
+    listeDots[currentIndex].classList.remove("dot_selected");
+    currentIndex = index;
 
-  if (currentIndex > slides.length - 1) {
-    currentIndex = 0;
-  }
-
-  listeDots[currentIndex].classList.add("dot_selected");
-  bannerImmage.src = slides[currentIndex].image;
-  bannerTitle.innerHTML = slides[currentIndex].tagLine;
+    listeDots[currentIndex].classList.add("dot_selected");
+    bannerImmage.src = slides[currentIndex].image;
+    bannerTitle.innerHTML = slides[currentIndex].tagLine;
+  });
 });
 
-divArrowLeft.addEventListener("click", () => {
+//! fonction pour mettre a jour l'affichage des slides
+const updateSlide = (direction) => {
   listeDots[currentIndex].classList.remove("dot_selected");
-  currentIndex--;
-
-  if (currentIndex < 0) {
+  currentIndex += direction;
+  if (currentIndex >= slides.length) {
+    currentIndex = 0;
+  } else if (currentIndex < 0) {
     currentIndex = slides.length - 1;
   }
 
   listeDots[currentIndex].classList.add("dot_selected");
   bannerImmage.src = slides[currentIndex].image;
   bannerTitle.innerHTML = slides[currentIndex].tagLine;
-});
+};
 
-listeDots.forEach((dot, index) => {
-  dot.addEventListener("click", () => {
-    listeDots[currentIndex].classList.remove("dot_selected");
-
-    currentIndex = index;
-
-    listeDots[currentIndex].classList.add("dot_selected");
-
-    bannerImmage.src = slides[currentIndex].image;
-    bannerTitle.innerHTML = slides[currentIndex].tagLine;
-  });
-});
+divArrowRight.addEventListener("click", () => updateSlide(1));
+divArrowLeft.addEventListener("click", () => updateSlide(-1));
